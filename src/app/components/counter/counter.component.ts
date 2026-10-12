@@ -1,3 +1,4 @@
+
 import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
@@ -36,30 +37,28 @@ export class CounterComponent {
   }
 
   decrement(): void {
-    if (this.count > 0) {
-      this.count--;
-    }
+    this.count--;
   }
 
   reset(): void {
     this.count = 0;
   }
 
-save(): void {
-  const name = this.counterName.trim();
+  save(): void {
+    const name = this.counterName.trim();
 
-  if (!name) {
-    return;
+    if (!name) {
+      return;
+    }
+
+    this.saved.emit({
+      id: crypto.randomUUID(),
+      name,
+      value: this.count,
+      createdAt: new Date().toISOString(),
+    });
+
+    this.counterName = '';
+    this.count = 0;
   }
-
-  this.saved.emit({
-    id: crypto.randomUUID(),
-    name,
-    value: this.count,
-    createdAt: new Date().toISOString(),
-  });
-
-  this.counterName = '';
-  this.count = 0;
-}
 }

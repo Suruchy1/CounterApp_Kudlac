@@ -26,7 +26,6 @@
       </ion-button>
     </div>
 
-    <!-- Filter historie -->
     <ion-segment
       [value]="filter()"
       (ionChange)="setFilter($event.detail.value)"
@@ -44,7 +43,6 @@
       </ion-segment-button>
     </ion-segment>
 
-    <!-- Zoznam filtrovaných počítadiel -->
     @if (filteredCounters().length === 0) {
       <p class="state-message">
         Žádné záznamy pro vybraný filtr.

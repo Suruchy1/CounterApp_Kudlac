@@ -45,20 +45,21 @@ export class CounterComponent {
     this.count = 0;
   }
 
-  save(): void {
-    const name = this.counterName.trim();
+save(): void {
+  const name = this.counterName.trim();
 
-    if (!name) {
-      return;
-    }
-
-    this.saved.emit({
-      id: crypto.randomUUID(),
-      name,
-      value: this.count,
-    });
-
-    this.counterName = '';
-    this.count = 0;
+  if (!name) {
+    return;
   }
+
+  this.saved.emit({
+    id: crypto.randomUUID(),
+    name,
+    value: this.count,
+    createdAt: new Date().toISOString(),
+  });
+
+  this.counterName = '';
+  this.count = 0;
+}
 }
